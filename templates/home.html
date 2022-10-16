@@ -1,0 +1,247 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../static/stylesheets/homestyle.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://use.typekit.net/lxl5wgn.css">
+  <link rel="icon" type="image/x-icon" href="../iglogocropped.jpg">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>ZVS Designs</title>
+  <script>
+    const carouselimages = document.getElementsByClassName("hero-bg");
+    var counter = 0;
+    var carousel;
+    function changeImage(manual) {
+      carouselimages[counter].style.opacity = 0;
+      counter = (counter + 1) % carouselimages.length;
+      carouselimages[counter].style.opacity = 1;
+      if (manual) {
+        clearInterval(carousel);
+        carousel =  setInterval(changeImage.bind(false), 3000);
+      }
+    }
+    carousel = setInterval(changeImage.bind(false), 3000);
+  </script>
+  <script>
+    const shopPreviewImages = document.getElementsByClassName("shop-img-wrapper");
+    var firstImageIndex = 0;
+    function moveCarousel(right) {
+      const length = shopPreviewImages.length;
+      if (right){
+        for(i=firstImageIndex; i<(firstImageIndex+3); i++) {
+          shopPreviewImages[i].classList.remove("shop-preview-show");
+          /*((this % b) + b) % b*/
+          shopPreviewImages[(((i-3)% length)+length)%length].classList.add("shop-preview-show");
+        }
+        firstImageIndex = ((((firstImageIndex-3)%length)+length)%length);
+      }
+      else{
+        for (i=firstImageIndex; i<(firstImageIndex+3); i++) {
+          shopPreviewImages[i].classList.remove("shop-preview-show");
+          shopPreviewImages[(i+3) % length].classList.add("shop-preview-show");
+        }
+        firstImageIndex = (firstImageIndex+3) % length;
+      }
+      }
+  </script>
+  <script>
+  $(document).ready(function() {
+    // Check if element is scrolled into view
+    function isScrolledIntoView(el) {
+      var rect = el.getBoundingClientRect();
+      var elemTop = rect.top;
+      var elemBottom = rect.bottom;
+
+      // Only completely visible elements return true:
+      var isVisible = (elemTop >= 0) && (elemBottom*(2/3) <= window.innerHeight);
+      // Partially visible elements return true:
+      //var isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+      return isVisible;
+    }
+    // If element is scrolled into view, fade it in
+    $(window).scroll(function() {
+      $('.fade-in-scroll').each(function() { // for each element with this class
+        if (isScrolledIntoView(this) === true) { // check if scrolled into view
+          $(this).addClass('faded-in'); // add class that will cause animation to happen
+          $(this).addClass('animate-bottom');
+        }
+      });
+    });
+  });
+  </script>
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById("header-menu").classList.toggle("show");
+    }
+  </script>
+  <script>
+    const images = ["../static/images/furniture/f1.jpg",
+      "../static/images/furniture/f2.jpg",
+     "../static/images/furniture/f3.jpg",
+      "../static/images/furniture/f4.jpg",
+      "../static/images/furniture/f5.jpg",
+      "../static/images/furniture/f6.jpg",
+      "../static/images/furniture/f7.jpg",
+      "../static/images/furniture/f8.jpg",
+      "../static/images/furniture/f9.jpg",
+      "../static/images/furniture/f10.jpg",
+      "../static/images/furniture/f11.jpg",
+      "../static/images/furniture/f12.jpg"];// image container
+    var imageCounter = 1;
+
+    function slideMobile() {
+        const image = document.getElementById("slide-mobile-image");
+        if (image) {
+          image.src = images[imageCounter % (images.length)];
+          imageCounter++;
+        }
+    }
+
+    function autoSlideMobile(){
+        setInterval(slideMobile, 1600);
+    }
+    window.onload = autoSlideMobile;
+  </script>
+</head>
+<body>
+  <div class="header">
+    <button id="burger-button" onclick="toggleMobileMenu()">
+      <img src="../static/images/icons/burger-menu.jpg">
+    </button>
+    <ul id="header-menu">
+      <li><a href="about.html" data-text="about">about</a></li>
+      <li><a href="projects.html" data-text="projects">projects</a></li>
+      <li><a href="blog.html" data-text="blog">blog</a></li>
+      <li><a id="shop-link" href="shop.html" data-text="shop">shop</a></li>
+    </ul>
+    <div id="logo-img">
+      <a href="home.html" >
+        <img id="desktop-logo" src="../static/images/zvslogo2.png" alt="home-logo">
+        <img id="mobile-logo" src="../static/images/mobilelogo.png" alt="home-logo">
+      </a>
+    </div>
+  </div>
+  <div id="logo-head">
+    <img src="../static/images/zvslogo2.png">
+  </div>
+  <div id="hero">
+    <img class="hero-bg" src="../static/images/homecarousel/hp1.jpg" style="opacity: 1" >
+    <img class="hero-bg" src="../static/images/homecarousel/hp2.jpg" >
+    <img class="hero-bg" src="../static/images/homecarousel/hp3.jpg" >
+    <img class="hero-bg" src="../static/images/homecarousel/hp4.jpg" >
+    <img class="hero-bg" src="../static/images/homecarousel/hp5.jpg" >
+    <img class="hero-bg" src="../static/images/homecarousel/hp6.jpg" >
+    <img class="hero-bg" src="../static/images/homecarousel/hp7.jpg" >
+    <header>
+        <ul>
+          <li><a href="projects.html">projects</a></li>
+          <li><a href="about.html">about</a></li>
+          <li><a href="contact.html">contact</a></li>
+          <li><a href="blog.html">blog</a></li>
+          <li id="shopli"><a href="shop.html">shop</a></li>
+        </ul>
+        <div id="socials-wrapper">
+          <a href="https://www.instagram.com/zvsdesign/?igshid=YmMyMTA2M2Y%3D"><img src="../static/images/icons/instagram.svg"></a>
+          <a href="https://www.pinterest.com.au/zvsdesign/"><img src="../static/images/icons/pinterest.svg"></a>
+        </div>
+    </header>
+    <div id = "carouselbuttonwrapper">
+      <button class="carouselbutton" name="leftbutton" onclick="changeImage(true)">
+        <svg height="30px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="square" stroke-linejoin="square" stroke-width="1" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button class="carouselbutton" name="rightbutton" onclick="changeImage(true)">
+        <svg height="30px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="square" stroke-linejoin="square" stroke-width="1" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+    </div>
+  </div>
+  <div id="shop-preview">
+    <div id="introText">I have always dreamt of creating an architectural studio. It would have a shopfront featuring alluring items of furniture, decorative, fine art and unusual objects. To me, architecture and decorating is the pursuit of what can make a space more interesting and harmonious.
+      <br></br>
+      Voil&aacute, that&#39;s how ZVS Design was born.
+      <br></br>
+      We are a design practice focused on residential architecture and interior design with a unique flair for collectable furniture foremost of the 20th Century as well as curated vintage.
+      <br></br>
+      We take a fully immersive approach, designing and managing all aspects of architecture and interior design, down to the smallest detail. We advise on and source furniture, decorative objects and art that represent a variety of styles, eras and places of origin.
+      <br></br>
+      Regardless of the size of the project - whether designing an extension, reconfiguring the house interiors, creating a cool contemporary feel, kitchen or bathroom modern makeover -   we work with our clients to create their unique home.
+      <br></br>
+      We have our &#39;shopfront&#39; where collectable items are for purchase. Some of these are featured below and of course we can source others to suit our clients&#39; requirements.
+      </div>
+    <div id="shop-preview-carousel-wrapper">
+    <div id="shop-preview-carousel-img-wrapper">
+      <!--make sure there are 12 (or some number with 6 as a factor)-->
+      <div class="shop-img-wrapper shop-preview-show">
+        <img class="shop-preview-img" src="../static/images/furniture/f1.jpg">
+      </div>
+      <div class="shop-img-wrapper shop-preview-show">
+        <img class="shop-preview-img" src="../static/images/furniture/f3.jpg">
+      </div>
+      <div class="shop-img-wrapper shop-preview-show">
+        <img class="shop-preview-img" src="../static/images/furniture/f2.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f4.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f5.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f6.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f7.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f8.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f9.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f10.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f11.jpg">
+      </div>
+      <div class="shop-img-wrapper">
+        <img class="shop-preview-img" src="../static/images/furniture/f12.jpg">
+      </div>
+    </div>
+    <button class="shop-preview-arrows" id="shop-preview-next-button" onclick="moveCarousel(false)">
+      <svg height="50px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="square" stroke-linejoin="square" stroke-width="0.5" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+    <button class="shop-preview-arrows" id="shop-preview-prev-button" onclick="moveCarousel(true)">
+      <svg height="50px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="square" stroke-linejoin="square" stroke-width="0.5" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    </div>
+  </div>
+  <div id="mobile-shop-carousel">
+    <div class="mobile-shop-image">
+      <img id="slide-mobile-image" src="../static/images/furniture/fu1.jpg">
+    </div>
+  </div>
+  <div id="focus">
+    <div id="focus-text" class="fade-in-scroll">
+      <p>We like fusing the modern and classical - the contemporary and traditional - to create a sense of timeless elegance and calm.  </div>
+    <img id="focus-img" class="fade-in-scroll" src="../static/images/webshbath.jpg">
+  </div>
+  <div id="footer">
+      <p><b>e:</b> contact@zvsdesign.com </p>
+      <p>Made by Mia Stapleton</p>
+      <div id="socials-footer">
+        <a href="https://www.instagram.com/zvsdesign/?igshid=YmMyMTA2M2Y%3D"><img src="../static/images/icons/instagram.svg"></a>
+        <a href="https://www.pinterest.com.au/zvsdesign/"><img src="../static/images/icons/pinterest.svg"></a>
+      </div>
+  </div>
+</body>
+</html>
